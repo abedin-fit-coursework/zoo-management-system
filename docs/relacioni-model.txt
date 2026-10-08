@@ -1,0 +1,45 @@
+tip_kaveza(*id*, naziv)  
+// naziv: "zatvoreni" / "otvoreni"
+
+kavez(*id*, lokacija, tip_kaveza_id)
+// tip_kaveza_id NOT NULL, FK -> tip_kaveza(id)
+
+sertifikat(*id*, naziv)
+
+zaposleni(*id*, jmbg, ime, prezime, datum_zaposlenja)
+
+staratelj(*zaposleni_id*, specijalizacija)
+// zaposleni_id PK i FK -> zaposleni(id)
+
+veterinar(*zaposleni_id*)
+// zaposleni_id PK i FK -> zaposleni(id)
+
+kategorija(*id*, naziv, nadkategorija_id)
+// nadkategorija_id FK -> kategorija(id), NULL ako je nadkategorija
+
+status_zivotinje(*id*, naziv)
+// naziv: "aktivna" / "u karantinu"
+
+zivotinja(*id*, latinski_naziv, vrsta, datum_dolaska, status_id, kavez_id, kategorija_id)
+// status_id NOT NULL, FK -> status_zivotinje(id)
+// kavez_id NOT NULL, FK -> kavez(id)
+// kategorija_id NOT NULL, FK -> kategorija(id)
+
+tura(*id*, datum_ture, staratelj_id)
+// staratelj_id NOT NULL, FK -> staratelj(zaposleni_id)
+
+zivotinja_tura(*id*, zivotinja_id, tura_id)
+// zivotinja_id NOT NULL, FK -> zivotinja(id)
+// tura_id NOT NULL, FK -> tura(id)
+
+zivotinja_staratelj(*id*, zivotinja_id, staratelj_id)
+// zivotinja_id NOT NULL, FK -> zivotinja(id)
+// staratelj_id NOT NULL, FK -> staratelj(zaposleni_id)
+
+pregled(*id*, datum_pregleda, rezultat, preporuke, zivotinja_id, veterinar_id)
+// zivotinja_id NOT NULL, FK -> zivotinja(id)
+// veterinar_id NOT NULL, FK -> veterinar(zaposleni_id)
+
+veterinar_sertifikat(*id*, veterinar_id, sertifikat_id)
+// veterinar_id NOT NULL, FK -> veterinar(zaposleni_id)
+// sertifikat_id NOT NULL, FK -> sertifikat(id)
